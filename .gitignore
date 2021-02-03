@@ -1,0 +1,6 @@
+venv-telco/
+dataset/
+*.csv
+.vscode/
+__pycache__/
+.ipynb_checkpoints/
