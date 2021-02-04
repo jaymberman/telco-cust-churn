@@ -4,8 +4,100 @@
 {% block actions %}
 <p>Get a prediction for a single customer</p>
 <div>
-    <form action="{{ url_for('stuff') }}" method="post">
-      <input type="text" name="random" required="required">
+    <form action="{{ url_for('single_result') }}" method="post">
+      <select name="gender" id="gender" value="Male" required>
+        <option value="" disabled selected>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <select name="SeniorCitizen" id="SeniorCitizen" value="No" required>
+        <option value="" disabled selected>SeniorCitizen</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <select name="Partner" id="Partner" value="No" required>
+        <option value="" disabled selected>Partner</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <select name="Dependents" id="Dependents" value="No" required>
+        <option value="" disabled selected>Dependents</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <input type="number" name="tenure" placeholder="MonthsWithFirm" min="0" max="999" step="1" required="required" style="width: 150px;">
+      <select name="PhoneService" id="PhoneService" value="No" required>
+        <option value="" disabled selected>PhoneService</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <select name="MultipleLines" id="MultipleLines" value="No" required>
+        <option value="" disabled selected>MultipleLines</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No phone service">No phone service</option>
+      </select>
+      <select name="InternetService" id="InternetService" value="No" required>
+        <option value="" disabled selected>InternetService</option>
+        <option value="Fiber optic">Fiber optic</option>
+        <option value="DSL">DSL</option>
+        <option value="No">No</option>
+      </select>
+      <select name="OnlineSecurity" id="OnlineSecurity" value="No" required>
+        <option value="" disabled selected>OnlineSecurity</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="OnlineBackup" id="OnlineBackup" value="No" required>
+        <option value="" disabled selected>OnlineBackup</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="DeviceProtection" id="DeviceProtection" value="No" required>
+        <option value="" disabled selected>DeviceProtection</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="TechSupport" id="TechSupport" value="No" required>
+        <option value="" disabled selected>TechSupport</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="StreamingTV" id="StreamingTV" value="No" required>
+        <option value="" disabled selected>StreamingTV</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="StreamingMovies" id="StreamingMovies" value="No" required>
+        <option value="" disabled selected>StreamingMovies</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="No internet service">No internet service</option>
+      </select>
+      <select name="Contract" id="Contract" value="Month-to-Month" required>
+        <option value="" disabled selected>Contract</option>
+        <option value="Month-to-month">Month-to-month</option>
+        <option value="One year">One year</option>
+        <option value="Two year">Two year</option>
+      </select>
+      <select name="PaperlessBilling" id="PaperlessBilling" value="Yes" required>
+        <option value="" disabled selected>PaperlessBilling</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <select name="PaymentMethod" id="PaymentMethod" value="Credit card (automatic)" required>
+        <option value="" disabled selected>PaymentMethod</option>
+        <option value="Electronic check">Electronic check</option>
+        <option value="Mailed check">Mailed check</option>
+        <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+        <option value="Credit card (automatic)">Credit card (automatic)</option>
+      </select>
+      <input type="number" name="MonthlyCharges" placeholder="MonthlyCharges" min="18.00" max="999.00" step="0.25" required="required" style="width: 150px;">
       <button type="submit">Submit</button>
     </form>
     <br>
@@ -15,12 +107,13 @@
   <br>
 
 <p>Upload a csv (with no header row) for bulk predictions</p>
-<div>
+COMING SOON
+<!-- <div>
     <form action="{{ url_for('fileupload') }}" method="POST" enctype="multipart/form-data">
       <input type="file" name="file" required="required">
       <input type="submit" value="upload">
     </form>
-</div>
+</div> -->
   <br>
   <br>
 {% endblock %}

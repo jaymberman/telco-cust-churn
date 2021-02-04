@@ -34,8 +34,8 @@ def train_model():
     y_pred = model.predict(X_test)
 
     print(f"test accuracy: {accuracy_score(y_test, y_pred)}")
-    print(f"precision accuracy: {precision_score(y_test, y_pred)}")
-    print(f"recall accuracy: {recall_score(y_test, y_pred)}")
+    print(f"test precision: {precision_score(y_test, y_pred)}")
+    print(f"test recall: {recall_score(y_test, y_pred)}")
 
     return model
 

@@ -1,23 +1,38 @@
 from flask import Flask, render_template, request, send_file
 from flask import after_this_request
 import pandas as pd
+from numpy import float64
 import tempfile
 import os
+import sklearn
+from joblib import load
 
 TEMPDIR = tempfile.mkdtemp()
-PATH = os.path.join(TEMPDIR, 'delme.csv')
+PATH = os.path.join(TEMPDIR, 'churn_predictions.csv')
+PREPROCESSOR = load('src/data_preprocessing_pipeline.joblib')
+MODEL = load('src/model.joblib')
+
 
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template('home.html')
 
 @app.route('/single_result', methods=['POST'])
-def stuff():
+def single_result():
     usr_input = [str(x) for x in request.form.values()]
+    df = pd.DataFrame([usr_input])
+    df.loc[:, 4] = df.loc[:, 4].astype(float64)
+    df.loc[:, 17] = df.loc[:, 17].astype(float64)
+    df.columns = ['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+                  'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+                  'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges']
+    X = PREPROCESSOR.transform(df)
+    proba = MODEL.predict_proba(X)
+    print(MODEL.classes_)
     return render_template('home.html', 
-                            text=f'Result: {usr_input[0]}')
+                            text=f'Probability of Customer Leaving: {proba[0][1] * 100}%')
 
 
 def _do_data_science(df):
