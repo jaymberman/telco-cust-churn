@@ -1,7 +1,12 @@
+from flask import Flask, render_template, request, send_file
+from flask import after_this_request
+import pandas as pd
+import tempfile
+import os
+
 TEMPDIR = tempfile.mkdtemp()
 PATH = os.path.join(TEMPDIR, 'delme.csv')
 
-x = 4
 app = Flask(__name__)
 
 @app.route('/')
@@ -13,10 +18,6 @@ def stuff():
     usr_input = [str(x) for x in request.form.values()]
     return render_template('home.html', 
                             text=f'Result: {usr_input[0]}')
-
-@app.route('/page1')
-def page1():
-	return "You're on page 1!"
 
 
 def _do_data_science(df):
