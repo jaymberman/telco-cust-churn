@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block download %}
+<p> Success! </p>
+<div>
+    <a href="{{ url_for('download') }}">
+        <button>Download Result</button>
+    </a>
+</div>
+<br>
+<div>
+    <a href="/">Take me home</a>
+</div>
+{% endblock %}
